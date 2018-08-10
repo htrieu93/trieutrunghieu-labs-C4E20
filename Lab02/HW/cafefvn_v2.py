@@ -65,4 +65,3 @@ list_of_content = list_of_content + list_temp
 list_of_content = sorted(list_of_content, key = itemgetter('index'))
 
 pyexcel.save_as(records = list_of_content, dest_file_name = 'bctc.xlsx')
-

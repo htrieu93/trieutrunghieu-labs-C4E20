@@ -56,20 +56,10 @@ for v in table_temp.values():
 # Merge 2 dictionaries
 table_content.update(table_temp)
 
-list_of_content = []
-for key,value in table_content.items():
-    item = {
-        'index' : key,
-        'line item' : value[0],
-        'Q1' : value[1],
-        'Q2' : value[2],
-        'Q3' : value[3],
-        'Q4' : value[4],
-    }
-    list_of_content.append(item)
-
-
-list_of_content = sorted(list_of_content, key = itemgetter('index'))
-
-pyexcel.save_as(records = list_of_content, dest_file_name = 'bctc.xlsx')
-
+excel = pyexcel.Sheet()
+excel.dict = table_content
+excel.transpose()
+excel.row += ['index', 'Line item', 'Q1', 'Q2', 'Q3', 'Q4']
+row = excel.number_of_rows() - 1
+excel.name_columns_by_row(row)
+excel.save_as(filename = 'bctc.xlsx')
