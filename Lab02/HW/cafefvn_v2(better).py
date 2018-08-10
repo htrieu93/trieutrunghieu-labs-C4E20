@@ -11,7 +11,6 @@ content = conn.read().decode('utf-8')
 
 soup  = BeautifulSoup(content, 'html.parser')
 
-# table_content = {}
 list_of_content = []
 
 # Find bold line items
@@ -60,7 +59,7 @@ for l in list_temp:
         l['Q' + str(i + 1)] = value[count].string
         count += 1
 
-# Merge 2 dictionaries
+# Merge 2 lists
 list_of_content = list_of_content + list_temp
 
 list_of_content = sorted(list_of_content, key = itemgetter('index'))
